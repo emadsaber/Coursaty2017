@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="3a17bbbfaf244ab7b356c043f1b8967d" Name="Diagram1">
+        <EntityTypeShape EntityType="CoursatyModel.Course" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.CoursesComment" Width="1.5" PointX="3" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.CoursesComments_Replies" Width="1.5" PointX="8.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.Instructor" Width="1.5" PointX="1.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.Lecture" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.LecturesComment" Width="1.5" PointX="6" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.LecturesComments_Replies" Width="1.5" PointX="11.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.sysdiagram" Width="1.5" PointX="2.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.Track" Width="1.5" PointX="1.5" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="CoursatyModel.User" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <AssociationConnector Association="CoursatyModel.fk_comments_courses" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.fk_courses_instructors" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.fk_courses_tracks" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.FK_Lectures_Courses" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.fk_Comments" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.FK_CoursesComments_Replies_CoursesComments" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.FK_CoursesComments_Replies_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.FK_LecturesComments_Lectures" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.FK_LecturesComments_Replies_LecturesComments" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.FK_LecturesComments_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.FK_LecturesComments_Replies_Users" ManuallyRouted="false" />
+        <AssociationConnector Association="CoursatyModel.fk_Tracks" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
