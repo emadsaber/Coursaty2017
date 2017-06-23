@@ -25,6 +25,7 @@ namespace Coursaty
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+			"~/Content/MyStyle.css",
                       "~/Content/site.css"));
         }
     }

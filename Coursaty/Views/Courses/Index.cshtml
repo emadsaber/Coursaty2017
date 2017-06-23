@@ -1,6 +1,51 @@
 ﻿@model IEnumerable<Coursaty.Models.Course>
 
 @{
+    ViewBag.Title = "View all courses";
+}
+
+<h2>Browse Courses</h2>
+
+<p>
+    @*@Html.ActionLink("Create New", "Create")*@
+</p>
+
+@foreach (var course in Model)
+{
+    <a class="courseLink" href="@Url.Action("details", new { id = @course.id })">
+        <div class="course">
+            <div class="image">
+                <img src="~/images/@course.image" alt="@course.title" />
+            </div>
+            <div class="title">
+                @course.title
+            </div>
+            <div class="meta">
+                @{
+                    if (course.description == null)
+                    {
+                        <b>...More...</b>
+                    }
+                    else if (course.description.ToString().Length > 90)
+                    {
+                        @course.description.ToString().Substring(0, 90)
+                        <b>...More...</b>
+                    }
+                    else
+                    {
+                        @course.description.ToString()
+                        <b>...More...</b>
+                    }
+                }
+            </div>
+        </div>
+    </a>
+}
+
+
+@*@model IEnumerable<Coursaty.Models.Course>
+
+@{
     ViewBag.Title = "Index";
 }
 
@@ -72,4 +117,4 @@
     </tr>
 }
 
-</table>
+</table>*@
