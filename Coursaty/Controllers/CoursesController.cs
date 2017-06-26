@@ -3,6 +3,10 @@ using System.Linq;
 using System.Net;
 using System.Web.Mvc;
 using Coursaty.Models;
+using System.Web;
+using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Coursaty.Controllers
 {
@@ -85,6 +89,8 @@ namespace Coursaty.Controllers
         {
             if (ModelState.IsValid)
             {
+                string virtualImageName = course.id.ToString() + course.image.Substring(course.image.LastIndexOf('.'));
+                course.image = virtualImageName;
                 db.Entry(course).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -94,6 +100,66 @@ namespace Coursaty.Controllers
             return View(course);
         }
 
+        [HttpGet]
+        public ActionResult UploadImage(string filename)
+        {
+            ViewBag.FileName = filename;
+            return View();
+        }
+        public ActionResult UploadImage2(int id)
+        {
+            return Json("id");
+        }
+        [HttpPost]
+        public ActionResult UploadImage(HttpPostedFileBase file)
+        {
+            if (file != null)
+            {
+                string pic = System.IO.Path.GetFileName(file.FileName);
+                string path = System.IO.Path.Combine(
+                                       Server.MapPath("~/images"), pic);
+                // file is uploaded
+                file.SaveAs(path);
+                ViewBag.FileName = pic;
+            }
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Test()
+        {
+            return View();
+        }
+        public async Task<JsonResult> UploadHomeReport(string id)
+
+        {
+            try
+            {
+                foreach (string file in Request.Files)
+                {
+                    var fileContent = Request.Files[file];
+                    if (fileContent != null && fileContent.ContentLength > 0)
+                    {
+                        // get a stream
+                        var stream = fileContent.InputStream;
+                        string ext = fileContent.FileName.Substring(fileContent.FileName.LastIndexOf('.'));
+                        // and optionally write the file to disk
+                        var fileName = DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss") + ext; //Path.GetFileName(file);
+                        var path = Path.Combine(Server.MapPath("~/Uploads"), fileName);
+                        using (var fileStream = System.IO.File.Create(path))
+                        {
+                            stream.CopyTo(fileStream);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                return Json("Upload failed");
+            }
+            return Json("File uploaded successfully");
+        }
         // GET: Courses/Delete/5
         public ActionResult Delete(int? id)
         {
