@@ -5,12 +5,54 @@
 }
 
 <h2>Edit</h2>
+@Scripts.Render("~/bundles/jquery")
+<script type="text/javascript">
+    //Changes the currently displayed image as indication for uploading the image
+    function ChangeDisplayedImage(path) {
+        document.getElementById("DisplayImg").src = path;
+    }
+    //Changes the image name that will be saved in DB. It will be edited from a hidden field
+    function ChangeImageHiddenValue(serverImgName) {
+        document.getElementById("image").value = serverImgName;
+    }
 
+    $(document).ready(function () {
+        $('#txtUploadFile').on('change', function (e) {
+            var files = e.target.files;
+            if (files.length > 0) {
+                if (window.FormData !== undefined) {
+                    var data = new FormData();
+                    data.append("newImage", files[0]);
+                    $.ajax({
+                        type: "POST",
+                        url: '/Courses/UploadHomeReport',
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        success: function (result) {
+                            console.log(result);
+                            ChangeDisplayedImage("http://" + window.location.host + "/Uploads/" + result);
+                            ChangeImageHiddenValue(result);
+                        },
+                        error: function (xhr, status, p3, p4) {
+                            var err = "Error " + " " + status + " " + p3 + " " + p4;
+                            if (xhr.responseText && xhr.responseText[0] == "{")
+                                err = JSON.parse(xhr.responseText).Message;
+                            console.log(err);
+                        }
+                    });
+                } else {
+                    alert("This browser doesn't support HTML5 file uploads!");
+                }
+            }
+        });
+    });
+</script>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>Course</h4>
         <hr />
@@ -18,7 +60,7 @@
         @Html.HiddenFor(model => model.id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.title, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.title, "Course Title", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.title, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.title, "", new { @class = "text-danger" })
@@ -26,7 +68,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.link, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.link, "Course URL", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.link, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.link, "", new { @class = "text-danger" })
@@ -34,15 +76,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.image, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.image, "Thumbnail", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.image, new { htmlAttributes = new { @class = "form-control" } })
+                <div class ="img-thumbnail">
+                    @Html.HiddenFor(model => model.image);
+                    <img id="DisplayImg" src="~/images/@Model.image" alt="@Model.image" />
+                </div>
+                <div>  
+                    <input type="file" name="UploadFile" id="txtUploadFile" />
+                </div> 
                 @Html.ValidationMessageFor(model => model.image, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.rate, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.rate, "Rating", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.rate, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.rate, "", new { @class = "text-danger" })
@@ -50,7 +98,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.views, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.views, "Views", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.views, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.views, "", new { @class = "text-danger" })
@@ -58,7 +106,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.description, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.description, "Description", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.description, new { htmlAttributes = new { @class = "form-control" } })
                 @Html.ValidationMessageFor(model => model.description, "", new { @class = "text-danger" })
@@ -66,7 +114,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.instructorId, "instructorId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.instructorId, "Instructor Name", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("instructorId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.instructorId, "", new { @class = "text-danger" })
@@ -74,7 +122,7 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.trackId, "trackId", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.trackId, "Course Track", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.DropDownList("trackId", null, htmlAttributes: new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.trackId, "", new { @class = "text-danger" })
@@ -96,3 +144,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+
