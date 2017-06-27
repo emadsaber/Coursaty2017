@@ -62,7 +62,11 @@ namespace Coursaty.Controllers
             ViewBag.trackId = new SelectList(db.Tracks, "id", "name", course.trackId);
             return View(course);
         }
-
+        public ActionResult UploadImage()
+        {
+            Course c = new Course() { rate = 1 };
+            return View(c);
+        }
         // GET: Courses/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -76,7 +80,7 @@ namespace Coursaty.Controllers
                 return HttpNotFound();
             }
             ViewBag.instructorId = new SelectList(db.Instructors, "id", "name", course.instructorId);
-            ViewBag.trackId = new SelectList(db.Tracks, "id", "name", course.trackId);
+            ViewBag.trackId = new SelectList(db.Tracks.Where(t => t.parentTrack != null), "id", "name", course.trackId);
             return View(course);
         }
 
@@ -97,8 +101,8 @@ namespace Coursaty.Controllers
             ViewBag.trackId = new SelectList(db.Tracks, "id", "name", course.trackId);
             return View(course);
         }
-        public async Task<JsonResult> UploadHomeReport(string id)
 
+        public async Task<JsonResult> UploadHomeReport(string id)
         {
             var fileName = "";
             try
@@ -128,6 +132,7 @@ namespace Coursaty.Controllers
             }
             return Json(fileName);
         }
+
         // GET: Courses/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -142,6 +147,7 @@ namespace Coursaty.Controllers
             }
             return View(course);
         }
+        
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

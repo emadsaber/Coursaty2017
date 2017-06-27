@@ -21,6 +21,7 @@
             document.getElementById("star2").innerHTML = empty(2);
             document.getElementById("star3").innerHTML = empty(3);
             document.getElementById("star4").innerHTML = empty(4);
+            
         }
         if (index == 0) {
             document.getElementById("star0").innerHTML = full(0);
@@ -53,6 +54,8 @@
             document.getElementById("star3").innerHTML = full(3);
             document.getElementById("star4").innerHTML = full(4);
         }
+
+        _current = index;
     }
     function empty(index) {
         var e = "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_empty.png' />";
@@ -61,6 +64,9 @@
     function full(index) {
         var f = "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_full.png' />";
         return f;
+    }
+    function GetRate() {
+        return _current;
     }
 </script>
 

@@ -1,4 +1,4 @@
-﻿
+﻿@model Coursaty.Models.Course
 @{
     ViewBag.Title = "UploadImage";
 }
@@ -18,7 +18,12 @@
 }*@
 
 @Scripts.Render("~/bundles/jquery")
+
 <script type="text/javascript">
+    function DisplayCurrent() {
+        var x = this.GetRate();
+        alert(x);
+    }
     $(document).ready(function () {
         $('#txtUploadFile').on('change', function (e) {
             alert('dd');
@@ -54,9 +59,10 @@
     });
 </script>
 
-
 <div>
     <input type="file" name="UploadFile" id="txtUploadFile" />
-    <input type="button" id="btnSubmit" value="Submit"/>
+    <input type="button" id="btnSubmit" value="Submit" onclick="DisplayCurrent()"/>
 </div> 
 
+
+@Html.Partial("~/Views/_RatingControl.cshtml")
