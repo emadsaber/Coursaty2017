@@ -15,9 +15,10 @@ namespace Coursaty.Controllers
         private CoursatyEntities db = new CoursatyEntities();
 
         // GET: Lectures
-        public ActionResult Index()
+        public ActionResult Index(int? courseId)
         {
             var lectures = db.Lectures.Include(l => l.Course);
+            if(courseId != null) lectures = lectures.Where(l => l.courseId == courseId);
             return View(lectures.ToList());
         }
 
