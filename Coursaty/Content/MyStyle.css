@@ -27,7 +27,6 @@
             /*box-shadow: 0px 0px 40px #808080;*/
         }
         div .course .image{
-            margin : 15px;
             text-align:center;
             display:table;
             margin:0 auto;
@@ -58,8 +57,6 @@
 }
 
 .profile img{
-    width:140px;
-    height:140px;
     width:140px;
     height:140px;
     border-radius:70px;
@@ -112,4 +109,8 @@ div.editor-field .image img{
     width: 250px;
     height: 160px;
     border-radius: 20px;
+}
+
+.inlineImage{
+    float:right;
 }
