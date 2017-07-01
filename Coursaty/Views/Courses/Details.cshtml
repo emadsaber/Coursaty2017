@@ -7,11 +7,11 @@
 <div class="h1" style="margin-top:40px;">
    <a href="@Model.link" alt="@Model.link">@Html.DisplayFor(model => model.title)</a>
     <span style="display:inline-block">
-        @Html.Partial("~/Views/_RatingControl.cshtml")
+        @Html.Partial("~/Views/_RatingControl.cshtml",ViewData)
     </span>
 </div>
 <div>
-    <a href="#" alt="#">@Model.Instructor.name</a>
+    @Html.ActionLink(@Model.Instructor.name, "details/" + Model.instructorId, "Instructors")
 </div>
 
 <hr />
@@ -32,7 +32,6 @@
         </dd>
 
     </dl>
-</div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")

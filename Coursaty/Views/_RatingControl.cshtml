@@ -17,12 +17,13 @@
     var _current = -1; //as an initial value for the current rating.
 
     function display(index) {
+
         if (index == -1) {
             document.getElementById("star0").innerHTML = empty(0);
             document.getElementById("star1").innerHTML = empty(1);
             document.getElementById("star2").innerHTML = empty(2);
             document.getElementById("star3").innerHTML = empty(3);
-            document.getElementById("star4").innerHTML = empty(4);
+            document.getElementById("star4").innerHTML = ifpty(4);
         }
         if (index == 0) {
             document.getElementById("star0").innerHTML = full(0);
@@ -31,8 +32,8 @@
             document.getElementById("star3").innerHTML = empty(3);
             document.getElementById("star4").innerHTML = empty(4);
         } else if (index == 1) {
-            document.getElementById("star0").innerHTML = full (0);
-            document.getElementById("star1").innerHTML = full (1);
+            document.getElementById("star0").innerHTML = full(0);
+            document.getElementById("star1").innerHTML = full(1);
             document.getElementById("star2").innerHTML = empty(2);
             document.getElementById("star3").innerHTML = empty(3);
             document.getElementById("star4").innerHTML = empty(4);
@@ -55,20 +56,37 @@
             document.getElementById("star3").innerHTML = full(3);
             document.getElementById("star4").innerHTML = full(4);
         }
-        else
-        {
+        else {
             return;
         }
         _current = index;
         ChangeHiddenRateTextBox(index);
     }
     function empty(index) {
-        var e = "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_empty.png' />";
+        var e = "";
+        var b = false;
+        @if (ViewData["Disabled"] != null)
+        {
+            @:{ b = @ViewData["Disabled"].ToString().ToLower();}
+        }
+        if (b) {
+            e = "<img class='img-style1' src='/Images/star_empty.png' />";
+        } else {
+            e = "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_empty.png' />";
+        }
         return e;
     }
     function full(index) {
-        var f = "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_full.png' />";
-        return f;
+        var b = false;
+        @if (ViewData["Disabled"] != null)
+        {
+            @:{ b = @ViewData["Disabled"].ToString().ToLower();}
+        }
+        if (b) {
+            return "<img class='img-style1' src='/Images/star_full.png' />";
+        } else {
+            return "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_full.png' />";
+        }
     }
     function GetRate() {
         return _current;

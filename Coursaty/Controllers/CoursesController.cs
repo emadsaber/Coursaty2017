@@ -33,6 +33,7 @@ namespace Coursaty.Controllers
             {
                 return HttpNotFound();
             }
+            ViewData["Disabled"] = true;
             return View(course);
         }
 
