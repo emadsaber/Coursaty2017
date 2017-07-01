@@ -1,6 +1,6 @@
 ﻿@model Coursaty.Models.Course
 <html>
-<body onload="display(@Model.rate - 1)">
+<body onload="display(@Model.rate - 1);">
 <style type="text/css">
     .img-style1 {
         width: 22px;
@@ -14,6 +14,8 @@
 </style>
 
 <script type="text/javascript">
+    var _current = -1; //as an initial value for the current rating.
+
     function display(index) {
         if (index == -1) {
             document.getElementById("star0").innerHTML = empty(0);
@@ -21,7 +23,6 @@
             document.getElementById("star2").innerHTML = empty(2);
             document.getElementById("star3").innerHTML = empty(3);
             document.getElementById("star4").innerHTML = empty(4);
-            
         }
         if (index == 0) {
             document.getElementById("star0").innerHTML = full(0);
@@ -54,8 +55,12 @@
             document.getElementById("star3").innerHTML = full(3);
             document.getElementById("star4").innerHTML = full(4);
         }
-
+        else
+        {
+            return;
+        }
         _current = index;
+        ChangeHiddenRateTextBox(index);
     }
     function empty(index) {
         var e = "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_empty.png' />";
@@ -68,6 +73,9 @@
     function GetRate() {
         return _current;
     }
+    function ChangeHiddenRateTextBox(index) {
+        document.getElementById("txtRate").value = index + 1;
+    }
 </script>
 
 <div class="rating">
@@ -76,6 +84,7 @@
     <div class="star" id="star2"><img onclick="display(2)" class="img-style1" src="~/Images/star_empty.png" /></div>
     <div class="star" id="star3"><img onclick="display(3)" class="img-style1" src="~/Images/star_empty.png" /></div>
     <div class="star" id="star4"><img onclick="display(4)" class="img-style1" src="~/Images/star_empty.png" /></div>
+    @Html.HiddenFor(m => m.rate, new { @name = "rate", @id = "txtRate"})
 </div>
 
 
