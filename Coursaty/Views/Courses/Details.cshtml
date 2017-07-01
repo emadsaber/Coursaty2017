@@ -24,6 +24,7 @@
 @* Course Lectures *@
 @{Html.RenderAction("Index", "Lectures", new { courseId = Model.id });}
 @* Course Comments *@
+@{ Html.RenderAction("Index", "CoursesComments", new { courseId = Model.id }); }
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")

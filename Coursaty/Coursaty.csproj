@@ -312,6 +312,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Courses\UploadImage.cshtml" />
     <Content Include="Views\_RatingControl.cshtml" />
+    <Content Include="Views\Shared\_LayoutWithNoCredits.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
