@@ -7,11 +7,11 @@
 <div class="h1" style="margin-top:40px;">
    <a href="@Model.link" alt="@Model.link">@Html.DisplayFor(model => model.title)</a>
     <span style="display:inline-block">
-        @Html.Partial("~/Views/_RatingControl.cshtml",ViewData)
+        @Html.Partial("~/Views/_RatingControl.cshtml", ViewData)
     </span>
 </div>
 <div>
-    @Html.ActionLink(@Model.Instructor.name, "details/" + Model.instructorId, "Instructors")
+    By @Html.ActionLink(@Model.Instructor.name, "details/" + Model.instructorId, "Instructors")
 </div>
 
 <hr />
@@ -21,17 +21,9 @@
 <p class="h4 nav-justified">
     @Model.description
 </p>
-    <dl class="dl-horizontal">
-
-        <dt>
-            @Html.LabelFor(model => model.trackId, "Course Track", htmlAttributes: new { @class = "control-label" })
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Track.name)
-        </dd>
-
-    </dl>
+@* Course Lectures *@
+@{Html.RenderAction("Index", "Lectures", new { courseId = Model.id });}
+@* Course Comments *@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
     @Html.ActionLink("Back to List", "Index")
