@@ -162,9 +162,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cours.cs">
-      <DependentUpon>Coursaty.tt</DependentUpon>
-    </Compile>
     <Compile Include="Models\Coursaty.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -179,6 +176,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Coursaty.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Course.cs">
+      <DependentUpon>Coursaty.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CoursesComment.cs">
       <DependentUpon>Coursaty.tt</DependentUpon>
@@ -250,7 +250,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Views\RatingControl.ascx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -311,10 +310,11 @@
     <Content Include="Views\Users\Edit.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Courses\UploadImage.cshtml" />
-    <Content Include="Views\_RatingControl.cshtml" />
+    <Content Include="Views\_CourseRatingControl.cshtml" />
     <Content Include="Views\Shared\_LayoutWithNoCredits.cshtml" />
     <Content Include="Views\Home\JQuery.cshtml" />
     <Content Include="Views\Home\Bootstrap.cshtml" />
+    <Content Include="Views\_LectureRatingControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

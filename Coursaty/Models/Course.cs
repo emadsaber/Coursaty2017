@@ -30,6 +30,7 @@ namespace Coursaty.Models
         public string description { get; set; }
         public int instructorId { get; set; }
         public Nullable<int> trackId { get; set; }
+        public System.DateTime currDate { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CoursesComment> CoursesComments { get; set; }

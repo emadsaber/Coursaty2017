@@ -1,0 +1,110 @@
+﻿@model Coursaty.Models.Lecture
+<html>
+<body onload="display(@Model.rate - 1);">
+<style type="text/css">
+    .img-style1 {
+        width: 22px;
+        height: 22px;
+    }
+
+    .star {
+        display: inline-block;
+        cursor:pointer;
+    }
+</style>
+
+<script type="text/javascript">
+    var _current = -1; //as an initial value for the current rating.
+
+    function display(index) {
+
+        if (index == -1) {
+            document.getElementById("star0").innerHTML = empty(0);
+            document.getElementById("star1").innerHTML = empty(1);
+            document.getElementById("star2").innerHTML = empty(2);
+            document.getElementById("star3").innerHTML = empty(3);
+            document.getElementById("star4").innerHTML = ifpty(4);
+        }
+        if (index == 0) {
+            document.getElementById("star0").innerHTML = full(0);
+            document.getElementById("star1").innerHTML = empty(1);
+            document.getElementById("star2").innerHTML = empty(2);
+            document.getElementById("star3").innerHTML = empty(3);
+            document.getElementById("star4").innerHTML = empty(4);
+        } else if (index == 1) {
+            document.getElementById("star0").innerHTML = full(0);
+            document.getElementById("star1").innerHTML = full(1);
+            document.getElementById("star2").innerHTML = empty(2);
+            document.getElementById("star3").innerHTML = empty(3);
+            document.getElementById("star4").innerHTML = empty(4);
+        } else if (index == 2) {
+            document.getElementById("star0").innerHTML = full(0);
+            document.getElementById("star1").innerHTML = full(1);
+            document.getElementById("star2").innerHTML = full(2);
+            document.getElementById("star3").innerHTML = empty(3);
+            document.getElementById("star4").innerHTML = empty(4);
+        } else if (index == 3) {
+            document.getElementById("star0").innerHTML = full(0);
+            document.getElementById("star1").innerHTML = full(1);
+            document.getElementById("star2").innerHTML = full(2);
+            document.getElementById("star3").innerHTML = full(3);
+            document.getElementById("star4").innerHTML = empty(4);
+        } else if (index == 4) {
+            document.getElementById("star0").innerHTML = full(0);
+            document.getElementById("star1").innerHTML = full(1);
+            document.getElementById("star2").innerHTML = full(2);
+            document.getElementById("star3").innerHTML = full(3);
+            document.getElementById("star4").innerHTML = full(4);
+        }
+        else {
+            return;
+        }
+        _current = index;
+        ChangeHiddenRateTextBox(index);
+    }
+    function empty(index) {
+        var e = "";
+        var b = false;
+        @if (ViewData["Disabled"] != null)
+        {
+            @:{ b = @ViewData["Disabled"].ToString().ToLower();}
+        }
+        if (b) {
+            e = "<img class='img-style1' src='/Images/star_empty.png' />";
+        } else {
+            e = "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_empty.png' />";
+        }
+        return e;
+    }
+    function full(index) {
+        var b = false;
+        @if (ViewData["Disabled"] != null)
+        {
+            @:{ b = @ViewData["Disabled"].ToString().ToLower();}
+        }
+        if (b) {
+            return "<img class='img-style1' src='/Images/star_full.png' />";
+        } else {
+            return "<img onclick='display(" + index + ")' class='img-style1' src='/Images/star_full.png' />";
+        }
+    }
+    function GetRate() {
+        return _current;
+    }
+    function ChangeHiddenRateTextBox(index) {
+        document.getElementById("txtRate").value = index + 1;
+    }
+</script>
+
+<div class="rating">
+    <div class="star" id="star0"><img onclick="display(0)" class="img-style1" src="~/Images/star_empty.png" /></div>
+    <div class="star" id="star1"><img onclick="display(1)" class="img-style1" src="~/Images/star_empty.png" /></div>
+    <div class="star" id="star2"><img onclick="display(2)" class="img-style1" src="~/Images/star_empty.png" /></div>
+    <div class="star" id="star3"><img onclick="display(3)" class="img-style1" src="~/Images/star_empty.png" /></div>
+    <div class="star" id="star4"><img onclick="display(4)" class="img-style1" src="~/Images/star_empty.png" /></div>
+    @Html.HiddenFor(m => m.rate, new { @name = "rate", @id = "txtRate"})
+</div>
+
+
+</body>
+</html>

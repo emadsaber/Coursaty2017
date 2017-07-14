@@ -3,63 +3,53 @@
 @{
     Layout = "~/Views/Shared/_LayoutWithNoCredits.cshtml";
     ViewBag.Title = "Index";
+
+    if (Model.Count() == 0)
+    { 
+        <h3>This course contains no lectures yet.</h3>
+    }
+    else
+    {
+        foreach (Coursaty.Models.Lecture lec in Model)
+        {
+            <a href=@Url.Action("Details", "Lectures", new { id = lec.id }) alt=@lec.name>
+                <!--Lecture link-->
+                <div class="well">
+                    <div class="row">
+                        <!--Title, Description, Rating-->
+                        <div class="col-md-10">
+                            <h4>
+                                <i class="glyphicon glyphicon-play-circle"></i>
+                                @lec.name
+                            </h4>
+                              @{ 
+                                  if (lec.description.Length > 250)
+                                  {
+                                      <p>@lec.description.Substring(0,250) <b> ...Read More...</b></p>
+                                  }
+                                  else
+                                  {
+                                      <p>@lec.description</p>
+                                  }
+                              }
+                        </div>
+                        <!--Thumbnail-->
+                        <div class="col-md-2">
+                            @{
+                                if (string.IsNullOrEmpty(lec.thumb))
+                                {
+                                    <img class = "img-responsive thumbnail" src="/Images/noThumb.png" alt="No Thumb" />
+                                }
+                                else
+                                {
+                                    <img class = "img-responsive thumbnail" src="/Uploads/@lec.thumb" alt="@lec.thumb" />
+                                }
+                             }
+                        </div>
+                    </div>
+                </div>
+            </a>
+        }
+    }
+
 }
-
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.materials)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.thumb)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contents)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Course.title)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.materials)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.thumb)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contents)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.title)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
-
-</table>

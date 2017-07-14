@@ -3,29 +3,52 @@
 @{
     ViewBag.Title = "Details";
 }
-
-<div class="h1" style="margin-top:40px;">
-   <a href="@Model.link" alt="@Model.link">@Html.DisplayFor(model => model.title)</a>
-    <span style="display:inline-block">
-        @Html.Partial("~/Views/_RatingControl.cshtml", ViewData)
-    </span>
-</div>
-<div>
-    By @Html.ActionLink(@Model.Instructor.name, "details/" + Model.instructorId, "Instructors")
+<div class="row">
+    <div class="col-md-12">
+        <!--Course title and rating-->
+        <div class="h1" style="margin-top:40px;">
+            <!--Course title-->
+            <a href="@Model.link" alt="@Model.link">@Html.DisplayFor(model => model.title)</a>
+            <!--Course rating-->
+            <span style="display:inline-block">
+                @Html.Partial("~/Views/_CourseRatingControl.cshtml", ViewData)
+            </span>
+        </div>
+        <!--Course Author and time-->
+        <p style="padding-top:10px">
+            <!--Course Author-->
+            By <i class="glyphicon glyphicon-user"></i>&nbsp;
+            @Html.ActionLink(@Model.Instructor.name, "details/" + Model.instructorId, "Instructors")
+            <!--Course time-->
+            at <i class="glyphicon glyphicon-time"></i>&nbsp;
+            @Model.currDate
+        </p>
+    </div>
 </div>
 
 <hr />
-<div class="img-thumbnail inlineImage">
-    <img src="~/Uploads/@Model.image" alt="@Model.image" />
+
+<div class="row">
+    <div class="col-md-8">
+        @* Course Lectures *@
+        @{Html.RenderAction("Index", "Lectures", new { courseId = Model.id });}
+
+        @* Course Comments *@
+        @{ Html.RenderAction("Index", "CoursesComments", new { courseId = Model.id }); }
+
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+    <div class="col-md-4">
+        <!--Thumbnail-->
+        <div class="img-responsive thumbnail">
+            <img src="~/Uploads/@Model.image" alt="@Model.image" />
+        </div>
+        <!--Description-->
+        <p style="padding-top:15px;">
+            <h4>@Model.description</h4>
+        </p>
+    </div>
 </div>
-<p class="h4 nav-justified">
-    @Model.description
-</p>
-@* Course Lectures *@
-@{Html.RenderAction("Index", "Lectures", new { courseId = Model.id });}
-@* Course Comments *@
-@{ Html.RenderAction("Index", "CoursesComments", new { courseId = Model.id }); }
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
