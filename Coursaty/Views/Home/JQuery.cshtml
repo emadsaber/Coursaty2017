@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "JQuery";
+}
+
+<h2>JQuery</h2>
+<style>
+    .par {
+        font-size: 1.3em;
+        color: yellow;
+        /*display:none;*/
+        text-align: center;
+        background-color: #333;
+        width: 200px;
+        height: 100px;
+        border: 1px solid #000;
+    }
+</style>
+@Scripts.Render("~/bundles/jquery")
+
+<script>
+    $(document).ready(function () {
+        $(".do").click(function () {
+            $("p").css({ "opacity": $(":text").val() , "width": "+=100px"});
+            $("p:first").html("This is the new text. It's a <b>revolutionary</b> function");
+        });
+    });
+</script>
+<p class="par">This is a test paragraph</p>
+
+<button class="do">Do it</button>
+<input type="text" value="0.1"/>

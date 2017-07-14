@@ -19,7 +19,14 @@ namespace Coursaty.Controllers
 
             return View();
         }
-
+        public ActionResult JQuery()
+        {
+            return View();
+        }
+        public ActionResult Bootstrap()
+        {
+            return View();
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

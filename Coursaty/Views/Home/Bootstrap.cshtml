@@ -1,0 +1,219 @@
+﻿
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Bootstrap</title>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Styles.Render("~/Content/css")
+</head>
+<body>
+    <nav class="nav navbar-inverse navbar-fixed-top" >
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+                    <i class="icon-bar"></i>
+                    <i class="icon-bar"></i>
+                    <i class="icon-bar"></i>
+                </button>
+                <a class="navbar-brand" href="#">Coursaty Website</a>
+            </div>
+            
+            <div id="mainNavBar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#"><i class = "glyphicon glyphicon-home"></i> Home</a></li>
+                    <li class="dropdown">
+                        <a class ="dropdown-toggle" data-toggle="dropdown" href="#"><i class="glyphicon glyphicon-paperclip"></i> Articles <i class="caret"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">Visual C# .NET</a></li>
+                            <li><a href="#">Visual Basic .NET</a></li>
+                            <li><a href="#">Java</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i class="glyphicon glyphicon-barcode"></i> Categories</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-phone-alt"></i> Contact</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><i class="glyphicon glyphicon-lock"></i> Login</a></li>
+                    <li><a href="#"><i class="glyphicon glyphicon-user"></i> Sign Up</a></li>
+                </ul>
+            </div> 
+        </div>
+    </nav>
+    
+    <div class="jumbotron">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <h1>Coursaty Website</h1>
+                    <p>
+                        Welcome to coursaty website. Welcome to coursaty website. Welcome to coursaty website. 
+                        Welcome to coursaty website. Welcome to coursaty website. Welcome to coursaty website.
+                        Welcome to coursaty website. Welcome to coursaty website. Welcome to coursaty website. 
+                    </p>
+                    <a href="#" class="btn btn-info">Read More...</a>
+                </div>
+                <div class="col-md-4">
+                    <img class="img-responsive thumbnail" src="~/Images/vb-header.png"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1 class="page-header">
+                    OUR ARTICLES
+                </h1>
+                <!--First Post-->
+                <a href="#"><h2>Introduction to Algorithms</h2></a>
+                <p>
+                    By 
+                    <span class="glyphicon glyphicon-user"></span> <a href="#">Emad Saber</a> 
+                    <span class="glyphicon glyphicon-time"></span> 17/05/2017 10:34 AM
+                </p>
+                <hr/>
+                <img class="img-responsive thumbnail" src="~/images/algo.jpg" alt="algo"/>
+                <hr />
+                <p>
+                    What are algorithms and why should you care? We'll start with an overview of algorithms and then 
+                    discuss two games that you could use an algorithm to solve more efficiently - the number guessing
+                    game and a route-finding game.
+                </p>
+                <a href="#" class="btn btn-primary">Read More <i class="glyphicon glyphicon-chevron-right"></i></a>
+                <hr />
+                <!--Second Post-->
+                <a href="#"><h2>What's new in .Net Framework 4.6.1</h2></a>
+                <p>
+                    By
+                    <span class="glyphicon glyphicon-user"></span> <a href="#">Ahmed Mohamed</a>
+                    <span class="glyphicon glyphicon-time"></span> 17/05/2017 10:34 AM
+                </p>
+                <hr />
+                <img class="img-responsive thumbnail" src="~/images/netfw.jpg" alt="net framework" />
+                <hr />
+                <p>
+                    The Microsoft .NET Framework 4.6.1 is a highly compatible, in-place update to the Microsoft .NET
+                    Framework 4, Microsoft .NET Framework 4.5, Microsoft .NET Framework 4.5.1, Microsoft .NET Framework 
+                    4.5.2 and Microsoft .NET Framework 4.6. The offline package can be used in situations where the web 
+                    installer cannot be used due to lack of internet connectivity.
+                </p>
+                <a href="#" class="btn btn-primary">Read More <i class="glyphicon glyphicon-chevron-right"></i></a>
+                <hr />
+                
+                <!--Pager-->
+                <ul class="pager">
+                    <li class="previous"><a href="#">&larr; Older </a></li>
+                    <li class="next"><a href="#"> Newer &rarr; </a></li>
+                </ul>
+            </div>
+            <!--Sidebar-->
+            <div class="col-md-4">
+                <!--Search-->
+                <div class="well">
+                    <h4>Search:</h4>
+                    <div class="input-group">
+                        <input type="text" class="form-control" />
+                        <span class="input-group-btn">
+                            <button class="form-control btn btn-success">
+                                <span class="glyphicon glyphicon-search"></span>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+                <!--Categories-->
+                <div class="well">
+                    <h4>Categories</h4>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">C# .NET</a></li>
+                                <li><a href="#">VB .NET</a></li>
+                                <li><a href="#">Java</a></li>
+                                <li><a href="#">C++</a></li>
+                                <li><a href="#">C</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><a href="#">Fortran</a></li>
+                                <li><a href="#">Pascal</a></li>
+                                <li><a href="#">Kotlin</a></li>
+                                <li><a href="#">Xamarin</a></li>
+                                <li><a href="#">Cobol</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!--Popular Posts-->
+                <div class="well">
+                    <h4>Popular Posts</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Introduction to ASP.NET MVC with C#</a></li>
+                        <li><a href="#">C# vs VB.NET</a></li>
+                        <li><a href="#">Kotlin, the new google child</a></li>
+                        <li><a href="#">What's new in C# 4.6.1?</a></li>
+                        <li><a href="#">Java, new features.</a></li>
+                        <li><a href="#">Boot strap is great for these reasons</a></li>
+                    </ul>
+                </div>
+                <!--Tag cloud-->
+                <div class="well">
+                    <h4>Tag Cloud</h4>
+                    <span style="font-size:17px"><a href="#">MVC</a></span>
+                    <span style="font-size:15px"><a href="#">C#</a></span>
+                    <span style="font-size:40px"><a href="#">HTML 5</a></span>
+                    <span style="font-size:12px"><a href="#">Java</a></span>
+                    <span style="font-size:14px"><a href="#">Kotlin</a></span>
+                    <span style="font-size:22px"><a href="#">Matlab</a></span>
+                    <span style="font-size:17px"><a href="#">MVC</a></span>
+                    <span style="font-size:11px"><a href="#">Web API</a></span>
+                    <span style="font-size:32px"><a href="#">PHP</a></span>
+                    <span style="font-size:25px"><a href="#">CSS</a></span>
+                    <span style="font-size:30px"><a href="#">JavaScript</a></span>
+                    <span style="font-size:15px"><a href="#">Jquery</a></span>
+                    <span style="font-size:19px"><a href="#">BootStrap</a></span>
+                    <span style="font-size:15px"><a href="#">WPF</a></span>
+                    <span style="font-size:18px"><a href="#">VB.NET</a></span>
+                    <span style="font-size:25px"><a href="#">WCF</a></span>
+                </div>
+            </div>
+        </div>
+        <hr />
+        <footer>
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>Links</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#">HOME</a></li>
+                        <li><a href="#">ARTICLES</a></li>
+                        <li><a href="#">CATEGORIES</a></li>
+                        <li><a href="#">CONTACT</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>Address</h4>
+                    <p>
+                        3rd floor,<br />
+                        15 st. of Freedom,<br />
+                        Cairo,<br />
+                        Egypt
+                    </p>
+                </div>
+                <div class="col-md-4">
+                    <h4>Phone</h4>
+                    Mob: +2 0114 063 7978 <br />
+                    Tel: +050 4824199 <br />
+                    E-mail: <a href="mailto:emadsaber89@gmail.com">emadsaber89@gmail.com</a><br />
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

@@ -313,6 +313,8 @@
     <Content Include="Views\Courses\UploadImage.cshtml" />
     <Content Include="Views\_RatingControl.cshtml" />
     <Content Include="Views\Shared\_LayoutWithNoCredits.cshtml" />
+    <Content Include="Views\Home\JQuery.cshtml" />
+    <Content Include="Views\Home\Bootstrap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
