@@ -27,6 +27,10 @@ namespace Coursaty.Controllers
         {
             return View();
         }
+        public ActionResult Bootstrap2()
+        {
+            return View();
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";

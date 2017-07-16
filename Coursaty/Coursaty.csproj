@@ -315,6 +315,7 @@
     <Content Include="Views\Home\JQuery.cshtml" />
     <Content Include="Views\Home\Bootstrap.cshtml" />
     <Content Include="Views\_LectureRatingControl.cshtml" />
+    <Content Include="Views\Home\Bootstrap2.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
